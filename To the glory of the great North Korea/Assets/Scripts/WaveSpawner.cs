@@ -20,6 +20,7 @@ public class WaveSpawner : MonoBehaviour
 
 	void Update()
 	{
+		timeBetweenWaves = 5f + Mathf.Ceil(waveIndex / 2);
 		if (countdown <= 0f)
 		{
 			StartCoroutine(SpawnWave());
@@ -37,7 +38,7 @@ public class WaveSpawner : MonoBehaviour
 		{
 			random = Random.Range(0, spawnPoints.Length);
 			SpawnEnemy(random);
-			yield return new WaitForSeconds(Random.Range(0.0f, 1.0f));
+			yield return new WaitForSeconds(Random.Range(0.2f, 0.8f));
 		}
 	}
 
