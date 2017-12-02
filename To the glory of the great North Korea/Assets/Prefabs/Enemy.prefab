@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114967641476107506}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e2a16690834a049ac4943f9e4c44d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
 --- !u!136 &136777513429039462
 CapsuleCollider:
   m_ObjectHideFlags: 1
