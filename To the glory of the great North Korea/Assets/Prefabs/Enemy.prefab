@@ -96,6 +96,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  health: 100
+  moneyDrop: 50
+  enemyDeathParticle: {fileID: 1266831566983248, guid: 1ce61d2eae0657e4c81c2d6fb7c3cb02,
+    type: 2}
 --- !u!136 &136777513429039462
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -103,7 +107,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1476616736685924}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2

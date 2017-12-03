@@ -5,8 +5,8 @@ public class CameraController : MonoBehaviour
 	[Header("Attributes")]
 	public float panSpeed = 30f;
 	public float panMargin = 10f;
-	public float scrollSpeed = 50f;
-	public float dampTime = 0.5f;
+	public float scrollSpeed = 100f;
+	public float dampTime = 0.3f;
 	[Header("Clamp Values")]
 	public float minX = 0f;
 	public float maxX = 80f;
@@ -19,10 +19,12 @@ public class CameraController : MonoBehaviour
 	private bool showFPS = false;
 	private Vector3 moveVelocity;
 	private FPSDisplay fpsDisplay;
+	BuildManager buildManager;
 
 	void Start()
 	{
 		fpsDisplay = GetComponent<FPSDisplay>();
+		buildManager = BuildManager.instance;
 	}
 
 	void Update()
@@ -46,6 +48,10 @@ public class CameraController : MonoBehaviour
 		if (doMovement == false)
 		{
 			return;
+		}
+		if (Input.GetMouseButton(1))
+		{
+			buildManager.UnselectTurretToBuild();
 		}
 		if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panMargin)
 		{

@@ -7,34 +7,38 @@ public class WaveSpawner : MonoBehaviour
 	public Transform enemyPrefab;
 	public Transform[] spawnPoints;
 	public float timeBetweenWaves = 5f;
-	public GameObject nextWaveGO;
+	public GameObject waveCountdownGO;
+	public GameObject waveNumberGO;
 
 	private float countdown = 2f;
-	private int waveIndex = 0;
-	private TextMeshProUGUI nextWaveText;
+	private TextMeshProUGUI waveCountdownText;
+	private TextMeshProUGUI waveNumberText;
 
 	void Start()
 	{
-		nextWaveText = nextWaveGO.GetComponent<TextMeshProUGUI>();
+		waveCountdownText = waveCountdownGO.GetComponent<TextMeshProUGUI>();
+		waveNumberText = waveNumberGO.GetComponent<TextMeshProUGUI>();
 	}
 
 	void Update()
 	{
-		timeBetweenWaves = 5f + Mathf.Ceil(waveIndex / 2);
+		timeBetweenWaves = 5f + Mathf.Ceil(PlayerStats.WaveNumber / 2);
 		if (countdown <= 0f)
 		{
 			StartCoroutine(SpawnWave());
 			countdown = timeBetweenWaves;
 		}
 		countdown -= Time.deltaTime;
-		nextWaveText.text = "NEXT WAVE IN: " + Mathf.Floor(countdown).ToString();
+		countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
+		waveCountdownText.text = "NEXT IN: " + Mathf.Floor(countdown).ToString();
+		waveNumberText.text = "WAVE: " + PlayerStats.WaveNumber.ToString();
 	}
 
 	IEnumerator SpawnWave()
 	{
-		waveIndex++;
+		PlayerStats.WaveNumber++;
 		int random;
-		for (int i = 0; i < waveIndex; i++)
+		for (int i = 0; i < PlayerStats.WaveNumber; i++)
 		{
 			random = Random.Range(0, spawnPoints.Length);
 			SpawnEnemy(random);

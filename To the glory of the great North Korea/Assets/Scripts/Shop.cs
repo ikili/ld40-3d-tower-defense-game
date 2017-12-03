@@ -2,25 +2,39 @@
 
 public class Shop : MonoBehaviour
 {
+	public ShopItem oneGunTurret;
+	public ShopItem twoGunTurret;
+	public ShopItem missileLauncher;
+	public ShopItem laserBeamer;
+
 	BuildManager buildManager;
 
 	void Start()
 	{
 		buildManager = BuildManager.instance;
+		oneGunTurret.priceText.text = "₩" + oneGunTurret.cost.ToString();
+		twoGunTurret.priceText.text = "₩" + twoGunTurret.cost.ToString();
+		missileLauncher.priceText.text = "₩" + missileLauncher.cost.ToString();
+		laserBeamer.priceText.text = "₩" + laserBeamer.cost.ToString();
 	}
 
-	public void PurchaseOneGunTurret()
+	public void SelectOneGunTurret()
 	{
-		buildManager.SetTurretToBuild(buildManager.oneGunTurretPrefab);
+		buildManager.SelectTurretToBuild(oneGunTurret);
 	}
 
-	public void PurchaseTwoGunTurret()
+	public void SelectTwoGunTurret()
 	{
-		buildManager.SetTurretToBuild(buildManager.twoGunTurretPrefab);
+		buildManager.SelectTurretToBuild(twoGunTurret);
 	}
 
-	public void PurchaseMissileLauncher()
+	public void SelectMissileLauncher()
 	{
-		buildManager.SetTurretToBuild(buildManager.missileLauncherPrefab);
+		buildManager.SelectTurretToBuild(missileLauncher);
+	}
+
+	public void SelectLaserBeamer()
+	{
+		buildManager.SelectTurretToBuild(laserBeamer);
 	}
 }
