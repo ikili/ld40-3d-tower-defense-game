@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 225c14f7cf5df2f49b52030ed0c3e54c
-timeCreated: 1512228253
+guid: ee6e1ce0f6eb80c4bb9bf0c4bdebd5e8
+timeCreated: 1512263539
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Barrel
-    100002: GunTop
+    100000: GunTop
+    100002: GunTop_002
     100004: Stand
     100006: //RootNode
-    400000: Barrel
-    400002: GunTop
+    400000: GunTop
+    400002: GunTop_002
     400004: Stand
     400006: //RootNode
-    2300000: Barrel
-    2300002: GunTop
+    2300000: GunTop
+    2300002: GunTop_002
     2300004: Stand
-    3300000: Barrel
-    3300002: GunTop
+    3300000: GunTop
+    3300002: GunTop_002
     3300004: Stand
-    4300000: Barrel
+    4300000: GunTop_002
     4300002: GunTop
     4300004: Stand
     7400000: Default Take
