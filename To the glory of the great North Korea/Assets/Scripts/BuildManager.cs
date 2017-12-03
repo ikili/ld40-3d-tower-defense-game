@@ -3,9 +3,11 @@
 public class BuildManager : MonoBehaviour
 {
 	public static BuildManager instance;
+	public NodeUI nodeUI;
 	public GameObject buildParticle;
 
 	private ShopItem turretToBuild;
+	private Node selectedNode;
 
 	void Awake()
 	{
@@ -23,6 +25,27 @@ public class BuildManager : MonoBehaviour
 	public void SelectTurretToBuild(ShopItem turret)
 	{
 		turretToBuild = turret;
+		DeselectNode();
+	}
+
+	public void SelectNode(Node node)
+	{
+		if (selectedNode == node)
+		{
+			DeselectNode();
+			return;
+		}
+
+		selectedNode = node;
+		turretToBuild = null;
+
+		nodeUI.SetTarget(node);
+	}
+
+	public void DeselectNode()
+	{
+		selectedNode = null;
+		nodeUI.Hide();
 	}
 
 	public void UnselectTurretToBuild()
