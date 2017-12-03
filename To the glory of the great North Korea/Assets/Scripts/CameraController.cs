@@ -29,6 +29,11 @@ public class CameraController : MonoBehaviour
 
 	void Update()
 	{
+		if (GameManager.gameOver)
+		{
+			this.enabled = false;
+			return;
+		}
 		if (Input.GetKeyDown("f"))
 		{
 			if (showFPS == false)
