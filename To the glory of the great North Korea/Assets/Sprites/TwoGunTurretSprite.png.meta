@@ -1,10 +1,10 @@
 fileFormatVersion: 2
 guid: 324be567d4f748c488125ef2cc60ffb6
-timeCreated: 1512266836
+timeCreated: 1512337396
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: sprite (0.0, 0.0) 0000
+    21300000: TwoGunTurret (0.0, 0.0) 0000
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -70,7 +70,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sprite (0.0, 0.0) 0000
+      name: TwoGunTurret (0.0, 0.0) 0000
       rect:
         serializedVersion: 2
         x: 0

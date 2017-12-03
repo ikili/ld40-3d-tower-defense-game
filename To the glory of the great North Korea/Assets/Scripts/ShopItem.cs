@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class ShopItem
 {
 	public GameObject prefab;
+	public GameObject upgradedPrefab;
 	public int cost;
+	public int upgradeCost;
 	public Text priceText;
 }
