@@ -28,7 +28,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4721006159719506
 Transform:
@@ -110,3 +110,10 @@ MonoBehaviour:
   hoverColor: {r: 0.6544118, g: 0.6544118, b: 0.6544118, a: 0}
   cantBuildColor: {r: 0.64705884, g: 0.1379758, b: 0.1379758, a: 0}
   turret: {fileID: 0}
+  shopItem:
+    prefab: {fileID: 0}
+    upgradedPrefab: {fileID: 0}
+    cost: 0
+    upgradeCost: 0
+    priceText: {fileID: 0}
+  isUpgraded: 0

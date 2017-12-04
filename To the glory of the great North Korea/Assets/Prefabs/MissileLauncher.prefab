@@ -153,7 +153,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4025263939529028
 Transform:
@@ -458,11 +458,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 30
+  bulletPrefab: {fileID: 1958917325430928, guid: bb33fcc9178d070419bb32dc79205f0e,
+    type: 2}
   turnSpeed: 5
   fireRate: 0.5
+  lineRenderer: {fileID: 0}
+  impactParticle: {fileID: 0}
+  impactLight: {fileID: 0}
+  damageOverTime: 30
+  slowAmount: 0.5
+  useLaser: 0
   enemyTag: Enemy
   partToRotate: {fileID: 4399028458978112}
   firePoint:
   - {fileID: 4940847692557250}
-  bulletPrefab: {fileID: 1958917325430928, guid: bb33fcc9178d070419bb32dc79205f0e,
-    type: 2}
