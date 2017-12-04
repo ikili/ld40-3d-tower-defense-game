@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 using TMPro;
 
 public class GameOver : MonoBehaviour
@@ -17,7 +18,23 @@ public class GameOver : MonoBehaviour
 		{
 			numberOfWavesText = numberOfWavesGO.GetComponent<TextMeshProUGUI>();
 		}
-		numberOfWavesText.text = PlayerStats.WaveNumber.ToString();
+		StartCoroutine(AnimateText());
+	}
+
+	IEnumerator AnimateText()
+	{
+		numberOfWavesText.text = "0";
+
+		int wave = 0;
+
+		yield return new WaitForSeconds(1.5f);
+
+		while (wave < PlayerStats.WaveNumber)
+		{
+			wave++;
+			numberOfWavesText.text = wave.ToString();
+			yield return new WaitForSeconds(0.05f);
+		}
 	}
 
 	public void Retry()
