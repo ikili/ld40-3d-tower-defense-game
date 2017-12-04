@@ -35,8 +35,6 @@ public class NodeUI : MonoBehaviour
 			upgradeCostText.fontSizeMax = 14f;
 			upgradeText.text = "NO UPGRADES";
 			upgradeCostText.text = "AVAILABLE";
-			sellText.text = "SELL";
-			sellCostText.text = "₩" + target.shopItem.GetSellUpgradedAmount();
 		}
 		else
 		{
@@ -44,8 +42,6 @@ public class NodeUI : MonoBehaviour
 			upgradeCostText.fontSizeMax = 18f;
 			upgradeText.text = "UPGRADE";
 			upgradeCostText.text = "₩" + target.shopItem.upgradeCost;
-			sellText.text = "SELL";
-			sellCostText.text = "₩" + target.shopItem.GetSellAmount();
 		}
 
 		ui.SetActive(true);
@@ -59,12 +55,6 @@ public class NodeUI : MonoBehaviour
 	public void Upgrade()
 	{
 		target.UpgradeTurret();
-		BuildManager.instance.DeselectNode();
-	}
-
-	public void Sell()
-	{
-		target.SellTurret();
 		BuildManager.instance.DeselectNode();
 	}
 }

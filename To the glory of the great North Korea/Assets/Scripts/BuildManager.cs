@@ -5,7 +5,6 @@ public class BuildManager : MonoBehaviour
 	public static BuildManager instance;
 	public NodeUI nodeUI;
 	public GameObject buildParticle;
-	public GameObject sellParticle;
 
 	private ShopItem turretToBuild;
 	private Node selectedNode;
