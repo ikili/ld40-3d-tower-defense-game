@@ -16,14 +16,11 @@ public class CameraController : MonoBehaviour
 	public float maxZ = 70f;
 
 	private bool doMovement = true;
-	private bool showFPS = false;
 	private Vector3 moveVelocity;
-	private FPSDisplay fpsDisplay;
 	BuildManager buildManager;
 
 	void Start()
 	{
-		fpsDisplay = GetComponent<FPSDisplay>();
 		buildManager = BuildManager.instance;
 	}
 
@@ -33,18 +30,6 @@ public class CameraController : MonoBehaviour
 		{
 			this.enabled = false;
 			return;
-		}
-		if (Input.GetKeyDown("f"))
-		{
-			if (showFPS == false)
-			{
-				fpsDisplay.enabled = true;
-			}
-			else
-			{
-				fpsDisplay.enabled = false;
-			}
-			showFPS = !showFPS;
 		}
 		if (Input.GetKeyDown("."))
 		{
