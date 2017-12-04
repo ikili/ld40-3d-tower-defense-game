@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 45
-  bulletPrefab: {fileID: 1958917325430928, guid: bb33fcc9178d070419bb32dc79205f0e,
+  bulletPrefab: {fileID: 1958917325430928, guid: ffb1d57ae96fbb54dbe1579cd856847a,
     type: 2}
   turnSpeed: 5
   fireRate: 0.75
