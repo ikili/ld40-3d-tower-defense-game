@@ -5,6 +5,8 @@ using TMPro;
 
 public class GameOver : MonoBehaviour
 {
+	public SceneFade sceneFade;
+	public string mainMenuSceneName = "MainMenu";
 	public GameObject numberOfWavesGO;
 
 	private TextMeshProUGUI numberOfWavesText;
@@ -20,11 +22,11 @@ public class GameOver : MonoBehaviour
 
 	public void Retry()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		sceneFade.FadeTo(SceneManager.GetActiveScene().name);
 	}
 
 	public void Menu()
 	{
-		Debug.Log("Go to menu"); 
+		sceneFade.FadeTo(mainMenuSceneName);
 	}
 }
