@@ -549,7 +549,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0.14353456, g: 0.5441177, b: 0.06801471, a: 1}
+  m_Color: {r: 0.5441177, g: 0.06801471, b: 0.11726657, a: 1}
   m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
@@ -589,7 +589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 60
   bulletPrefab: {fileID: 0}
-  turnSpeed: 5
+  turnSpeed: 10
   fireRate: 1
   lineRenderer: {fileID: 120547719387757650}
   impactParticle: {fileID: 198417504313552116}
@@ -615,8 +615,8 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 833b05b494dd92d43a40fba92be1b212, type: 2}
-  - {fileID: 2100000, guid: b892b90bb443ca942b45f6b065462449, type: 2}
+  - {fileID: 2100000, guid: 582fd114443118440aab4673c90726bb, type: 2}
+  - {fileID: 2100000, guid: ef227f8b47a3ac34599768e5f4a9e6f6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -751,7 +751,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1573779006
+  randomSeed: 550582381
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -841,7 +841,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.035142723, g: 0.36764705, b: 0.09247106, a: 1}
+      maxColor: {r: 0.36764705, g: 0.035142723, b: 0.035142723, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4068,7 +4068,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -930366194
+  randomSeed: 450384456
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7394,8 +7394,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 60005858fdce3fe459f61c982e1229c2, type: 2}
-  - {fileID: 2100000, guid: 60005858fdce3fe459f61c982e1229c2, type: 2}
+  - {fileID: 2100000, guid: f8c6e8f09ad1d7c4caa45b9cbdd7fab8, type: 2}
+  - {fileID: 2100000, guid: f8c6e8f09ad1d7c4caa45b9cbdd7fab8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

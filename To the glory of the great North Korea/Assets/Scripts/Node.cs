@@ -73,6 +73,24 @@ public class Node : MonoBehaviour
 		isUpgraded = true;
 	}
 
+	public void SellTurret()
+	{
+		if (!isUpgraded)
+		{
+			PlayerStats.Money += shopItem.GetSellAmount();
+		}
+		else
+		{
+			PlayerStats.Money += shopItem.GetSellUpgradedAmount();
+		}
+
+		Instantiate(buildManager.sellParticle, GetBuildPosition(), Quaternion.identity);
+
+		Destroy(turret);
+		shopItem = null;
+		isUpgraded = false;
+	}
+
 	void OnMouseDown()
 	{
 		if (EventSystem.current.IsPointerOverGameObject())
