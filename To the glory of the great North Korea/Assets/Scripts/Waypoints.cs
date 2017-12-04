@@ -2,7 +2,8 @@
 
 public class Waypoints : MonoBehaviour
 {
-	public static Transform[] points;
+	[HideInInspector]
+	public Transform[] points;
 
 	void Awake()
 	{

@@ -5,14 +5,17 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 	private Transform target;
-	private int wavepointIndex = 0;
+	private int waypointIndex = 0;
 
+	private Waypoints wayPoints;
 	private Enemy enemy;
 
 	void Start()
 	{
 		enemy = GetComponent<Enemy>();
-		target = Waypoints.points[0];
+		GameObject wayPointsGO = GameObject.FindGameObjectWithTag("Waypoints" + enemy.startNodeID.ToString());
+		wayPoints = wayPointsGO.GetComponent<Waypoints>();
+		target = wayPoints.points[0];
 	}
 
 	void Update()
@@ -30,13 +33,13 @@ public class EnemyMovement : MonoBehaviour
 
 	void GetNextWaypoint()
 	{
-		if (wavepointIndex >= Waypoints.points.Length - 1)
+		if (waypointIndex >= wayPoints.points.Length - 1)
 		{
 			EndPath();
 			return;
 		}
-		wavepointIndex++;
-		target = Waypoints.points[wavepointIndex];
+		waypointIndex++;
+		target = wayPoints.points[waypointIndex];
 	}
 
 	void EndPath()

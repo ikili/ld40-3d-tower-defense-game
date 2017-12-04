@@ -75,6 +75,7 @@ public class WaveSpawner : MonoBehaviour
 		{
 			randomSpawnPoint = Random.Range(0, spawnPoints.Length);
 			randomEnemyToSpawn = Random.Range(0, customWave.enemies.Length);
+
 			SpawnEnemy(randomSpawnPoint, customWave.enemies[randomEnemyToSpawn]);
 			yield return new WaitForSeconds(1f / customWave.rate);
 		}
@@ -84,7 +85,9 @@ public class WaveSpawner : MonoBehaviour
 
 	void SpawnEnemy(int randomSpawnPoint, GameObject enemy)
 	{
-		Instantiate(enemy, spawnPoints[randomSpawnPoint].position, spawnPoints[randomSpawnPoint].rotation);
+		GameObject enemyGO = Instantiate(enemy, spawnPoints[randomSpawnPoint].position, spawnPoints[randomSpawnPoint].rotation);
+		Enemy e = enemyGO.GetComponent<Enemy>();
+		e.startNodeID = randomSpawnPoint;
 		EnemiesAlive++;
 	}
 }

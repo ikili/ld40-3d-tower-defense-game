@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
 	public float startSpeed = 5f;
 	[HideInInspector]
 	public float speed;
+	[HideInInspector]
+	public int startNodeID;
 	public float startHealth = 100f;
 	public int moneyDrop = 50;
 	public GameObject enemyDeathParticle;
