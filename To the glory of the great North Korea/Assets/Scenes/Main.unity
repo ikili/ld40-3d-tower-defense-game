@@ -3277,8 +3277,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 304378628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 492.5, y: 316, z: 0}
-  m_LocalScale: {x: 1.0533333, y: 1.0533333, z: 1.0533333}
+  m_LocalPosition: {x: 459, y: 315.5, z: 0}
+  m_LocalScale: {x: 1.0516666, y: 1.0516666, z: 1.0516666}
   m_Children:
   - {fileID: 501301750}
   - {fileID: 1089858472}
@@ -3942,12 +3942,12 @@ Prefab:
     - target: {fileID: 224101671574485540, guid: 37fa42b670fd3eb47a14fb5cbeee6e80,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 492.5
+      value: 459
       objectReference: {fileID: 0}
     - target: {fileID: 224101671574485540, guid: 37fa42b670fd3eb47a14fb5cbeee6e80,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 316
+      value: 315.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37fa42b670fd3eb47a14fb5cbeee6e80, type: 2}
@@ -4737,7 +4737,7 @@ Prefab:
     - target: {fileID: 224098752456327922, guid: c718f254c36f872419a2f07fe4d0221c,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 165.00003
+      value: 164.99997
       objectReference: {fileID: 0}
     - target: {fileID: 224098752456327922, guid: c718f254c36f872419a2f07fe4d0221c,
         type: 2}
@@ -6280,7 +6280,7 @@ Prefab:
     - target: {fileID: 224674701738491428, guid: eea759178647acf448e8208fbe242bc0,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 55.00003
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 224674701738491428, guid: eea759178647acf448e8208fbe242bc0,
         type: 2}
@@ -17234,7 +17234,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'NEXT IN: 4'
+  m_text: 02.00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 529da68ff1f7fd4459ef696a6335058f, type: 2}
   m_sharedMaterial: {fileID: 21383646514811972, guid: 529da68ff1f7fd4459ef696a6335058f,
@@ -17303,10 +17303,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1667210978}
-    characterCount: 10
+    characterCount: 5
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 0
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -21119,14 +21119,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b40da495a5bae4ca1861bbc9a659c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 4199422942760584, guid: de1104aa2dd73f04086161e982965b26,
-    type: 2}
+  hardness: 1
+  deltaHardness: 0.25
+  waves:
+  - enemies:
+    - {fileID: 1476616736685924, guid: de1104aa2dd73f04086161e982965b26, type: 2}
+    - {fileID: 1097575933879796, guid: f1f4904c1aeb7b9449a19600cb4a2143, type: 2}
+    count: 2
+    rate: 2
+  - enemies:
+    - {fileID: 1097575933879796, guid: 6624111c53730534984ce7f091c1e3c1, type: 2}
+    - {fileID: 1476616736685924, guid: de1104aa2dd73f04086161e982965b26, type: 2}
+    count: 4
+    rate: 2
   spawnPoints:
   - {fileID: 1282072080}
   - {fileID: 867281075}
   - {fileID: 1107524945}
   - {fileID: 765449076}
-  timeBetweenWaves: 5
+  timeBetweenWaves: 2
   waveCountdownGO: {fileID: 1667210976}
   waveNumberGO: {fileID: 275932829}
 --- !u!4 &2116959465
@@ -21170,8 +21181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMoney: 10000
-  startLives: 10
-  startWaveNumber: 1
+  startLives: 100
+  startWaveNumber: 0
 --- !u!114 &2116959468
 MonoBehaviour:
   m_ObjectHideFlags: 0

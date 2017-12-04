@@ -7,7 +7,7 @@ public class PlayerStats : MonoBehaviour
 	public static int WaveNumber;
 	public int startMoney = 400;
 	public int startLives = 10;
-	public int startWaveNumber = 1;
+	public int startWaveNumber = 0;
 
 	void Start()
 	{

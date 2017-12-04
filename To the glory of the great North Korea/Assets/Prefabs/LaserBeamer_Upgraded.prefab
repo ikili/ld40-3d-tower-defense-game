@@ -595,7 +595,7 @@ MonoBehaviour:
   impactParticle: {fileID: 198417504313552116}
   impactLight: {fileID: 108059837708497564}
   damageOverTime: 60
-  slowAmount: 0.75
+  slowAmount: 0.5
   useLaser: 1
   enemyTag: Enemy
   partToRotate: {fileID: 4650252313181460}
