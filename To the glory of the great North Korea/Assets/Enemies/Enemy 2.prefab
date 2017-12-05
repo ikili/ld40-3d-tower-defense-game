@@ -181,11 +181,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e2a16690834a049ac4943f9e4c44d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 50
+  startSpeed: 80
   speed: 5
   startNodeID: 0
-  startHealth: 250
-  moneyDrop: 50
+  startHealth: 400
+  moneyDrop: 100
   enemyDeathParticle: {fileID: 1266831566983248, guid: 1ce61d2eae0657e4c81c2d6fb7c3cb02,
     type: 2}
   healthBar: {fileID: 224344413214764692}

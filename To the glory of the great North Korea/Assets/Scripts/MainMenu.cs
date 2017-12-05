@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
 
 	public void StartGame()
 	{
+		WaveSpawner.EnemiesAlive = 0;
 		sceneFade.FadeTo(levelToLoad);
 	}
 

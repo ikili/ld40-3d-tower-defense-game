@@ -39,6 +39,7 @@ public class GameOver : MonoBehaviour
 
 	public void Retry()
 	{
+		WaveSpawner.EnemiesAlive = 0;
 		sceneFade.FadeTo(SceneManager.GetActiveScene().name);
 	}
 

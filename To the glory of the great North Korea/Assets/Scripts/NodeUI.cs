@@ -58,6 +58,10 @@ public class NodeUI : MonoBehaviour
 
 	public void Upgrade()
 	{
+		if (target.isUpgraded == false)
+		{
+			MusicController.Instance.PlaySoundEffects("upgrade");
+		}
 		target.UpgradeTurret();
 		BuildManager.instance.DeselectNode();
 	}

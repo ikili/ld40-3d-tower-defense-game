@@ -35,8 +35,11 @@ public class Node : MonoBehaviour
 		if (PlayerStats.Money < item.cost)
 		{
 			Debug.Log("Not enough money to build that!");
+			MusicController.Instance.PlaySoundEffects("nomoney");
 			return;
 		}
+
+		MusicController.Instance.PlaySoundEffects("build");
 
 		PlayerStats.Money -= item.cost;
 
@@ -57,7 +60,7 @@ public class Node : MonoBehaviour
 
 		if (PlayerStats.Money < shopItem.upgradeCost)
 		{
-			Debug.Log("Not enough money to upgrade that!");
+			MusicController.Instance.PlaySoundEffects("nomoney");
 			return;
 		}
 
@@ -83,6 +86,8 @@ public class Node : MonoBehaviour
 		{
 			PlayerStats.Money += shopItem.GetSellUpgradedAmount();
 		}
+
+		MusicController.Instance.PlaySoundEffects("sell");
 
 		Instantiate(buildManager.sellParticle, GetBuildPosition(), Quaternion.identity);
 
