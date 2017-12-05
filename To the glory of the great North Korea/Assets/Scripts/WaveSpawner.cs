@@ -46,7 +46,7 @@ public class WaveSpawner : MonoBehaviour
 		countdown -= Time.deltaTime;
 		countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
 		waveCountdownText.text = string.Format("{0:00.00}", countdown);
-		waveNumberText.text = "WAVE: " + (PlayerStats.WaveNumber + 1).ToString();
+		waveNumberText.text = "WAVE: " + PlayerStats.WaveNumber.ToString();
 	}
 
 	IEnumerator SpawnWave()

@@ -34,7 +34,6 @@ public class Node : MonoBehaviour
 	{
 		if (PlayerStats.Money < item.cost)
 		{
-			Debug.Log("Not enough money to build that!");
 			MusicController.Instance.PlaySoundEffects("nomoney");
 			return;
 		}
@@ -55,6 +54,7 @@ public class Node : MonoBehaviour
 	{
 		if (isUpgraded)
 		{
+			MusicController.Instance.PlaySoundEffects("cantbuild");
 			return;
 		}
 

@@ -26,6 +26,9 @@ public class CameraController : MonoBehaviour
 
 	void Update()
 	{
+		panSpeed = GameSettings.PanSpeed;
+		scrollSpeed = GameSettings.ScrollSpeed;
+
 		if (GameManager.gameOver)
 		{
 			this.enabled = false;

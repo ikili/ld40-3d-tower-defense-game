@@ -12,10 +12,18 @@ public class MusicController : MonoBehaviour
 	[Header("Sound Effects")]
 	public SoundEffects[] soundEffects;
 
+	private string lastSfxPlayed;
+
 	void Start()
 	{
 		bgMusicSource.volume = 0f;
 		PlayMusic();
+	}
+
+	void Update()
+	{
+		bgMusicSource.volume = GameSettings.MasterVolume;
+		soundEffectsSource.volume = GameSettings.MasterVolume;
 	}
 
 	void Awake()
@@ -36,6 +44,11 @@ public class MusicController : MonoBehaviour
 		sfxName.ToLower();
 
 		AudioClip sfxToPlay = null;
+
+		if (lastSfxPlayed != sfxName && sfxName != "underattack")
+		{
+			StopSoundEffects();
+		}
 
 		if (sfxName == "build")
 		{
@@ -69,6 +82,7 @@ public class MusicController : MonoBehaviour
 		{
 			soundEffectsSource.clip = sfxToPlay;
 			soundEffectsSource.Play();
+			lastSfxPlayed = sfxName;
 		}
 	}
 

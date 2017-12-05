@@ -5,6 +5,9 @@ public class MainMenu : MonoBehaviour
 {
 	public SceneFade sceneFade;
 
+	public GameObject mainMenu;
+	public GameObject options;
+
 	public string levelToLoad = "Main";
 
 	public void StartGame()
@@ -15,7 +18,8 @@ public class MainMenu : MonoBehaviour
 
 	public void Options()
 	{
-
+		options.SetActive(true);
+		mainMenu.SetActive(false);
 	}
 
 	public void Quit()

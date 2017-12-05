@@ -6,21 +6,31 @@ public class PauseMenu : MonoBehaviour
 	public SceneFade sceneFade;
 	public string mainMenuSceneName = "MainMenu";
 
-	public GameObject ui;
+	public GameObject gameOverMenu;
+	public GameObject optionsMenu;
+	public GameObject pauseMenu;
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("p"))
+		if (gameOverMenu.activeSelf == false)
 		{
-			Toggle();
+			if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("p"))
+			{
+				Toggle();
+			}
+		}
+		else
+		{
+			Time.timeScale = 1f;
+			pauseMenu.SetActive(false);
 		}
 	}
 
 	public void Toggle()
 	{
-		ui.SetActive(!ui.activeSelf);
+		pauseMenu.SetActive(!pauseMenu.activeSelf);
 
-		if (ui.activeSelf)
+		if (pauseMenu.activeSelf)
 		{
 			Time.timeScale = 0f;
 		}
@@ -30,10 +40,10 @@ public class PauseMenu : MonoBehaviour
 		}
 	}
 
-	public void Retry()
+	public void Options()
 	{
-		Toggle();
-		sceneFade.FadeTo(SceneManager.GetActiveScene().name);
+		optionsMenu.SetActive(true);
+		pauseMenu.SetActive(false);
 	}
 
 	public void Menu()

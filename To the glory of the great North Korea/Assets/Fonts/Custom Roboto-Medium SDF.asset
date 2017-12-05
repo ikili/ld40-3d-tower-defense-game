@@ -18,12 +18,12 @@ MonoBehaviour:
   m_fontInfo:
     Name: Roboto
     PointSize: 62
-    Scale: 0
+    Scale: 1
     CharacterCount: 110
     LineHeight: 72.6875
     Baseline: 0
     Ascender: 57.5
-    CapHeight: 0
+    CapHeight: 44.0625
     Descender: -15.125
     CenterLine: 0
     SuperscriptOffset: 57.5
@@ -33,7 +33,7 @@ MonoBehaviour:
     UnderlineThickness: 3.0273438
     strikethrough: 15.409091
     strikethroughThickness: 3.0273438
-    TabWidth: 0
+    TabWidth: 154.375
     Padding: 5
     AtlasWidth: 512
     AtlasHeight: 512
@@ -42,10 +42,10 @@ MonoBehaviour:
   - id: 32
     x: 6
     y: 517
-    width: 0
-    height: 0
+    width: 15.4375
+    height: 72.625
     xOffset: 0
-    yOffset: 0
+    yOffset: 57.5
     xAdvance: 15.4375
     scale: 1
   - id: 33
@@ -1084,7 +1084,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Custom Roboto-Medium SDF Material
   m_Shader: {fileID: 4800000, guid: dca26082f9cb439469295791d9f76fe5, type: 3}
-  m_ShaderKeywords: UNDERLAY_ON
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA UNDERLAY_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
