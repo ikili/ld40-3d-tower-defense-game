@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
@@ -10,9 +11,15 @@ public class MainMenu : MonoBehaviour
 
 	public string levelToLoad = "Main";
 
+	void Start()
+	{
+		GameManager.Instance.Load();
+	}
+
 	public void StartGame()
 	{
 		WaveSpawner.EnemiesAlive = 0;
+		MusicController.Instance.StopMusic();
 		sceneFade.FadeTo(levelToLoad);
 	}
 

@@ -43,7 +43,12 @@ public class SceneFade : MonoBehaviour
 			image.color = new Color(0f, 0f, 0f, alhpa);
 			yield return 0;
 		}
-
+			
 		SceneManager.LoadScene(scene);
+			
+		if (MusicController.Instance.isFading == false)
+		{
+			MusicController.Instance.startedPlaying = false;
+		}
 	}
 }

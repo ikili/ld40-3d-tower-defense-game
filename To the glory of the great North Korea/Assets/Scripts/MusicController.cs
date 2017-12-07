@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class MusicController : MonoBehaviour
 {
 	public static MusicController Instance;
-	public float fadeSpeed = 0.1f;
+	public float fadeTime = 2f;
+	public float fadeInDelay = 0.5f;
+	[HideInInspector]
+	public bool startedPlaying = false;
+	[HideInInspector]
+	public bool settingsChanged = false;
 	public AudioSource bgMusicSource;
 	public AudioSource soundEffectsSource;
 	[Header("Background Music")]
@@ -13,17 +19,39 @@ public class MusicController : MonoBehaviour
 	public SoundEffects[] soundEffects;
 
 	private string lastSfxPlayed;
-
-	void Start()
-	{
-		bgMusicSource.volume = 0f;
-		PlayMusic();
-	}
+	[HideInInspector]
+	public  bool isFading = true;
 
 	void Update()
 	{
-		bgMusicSource.volume = GameSettings.MasterVolume;
-		soundEffectsSource.volume = GameSettings.MasterVolume;
+		CheckVolumeSettings();
+	}
+
+	void CheckVolumeSettings()
+	{
+		if (soundEffectsSource.volume != GameSettings.MasterVolume)
+		{
+			soundEffectsSource.volume = GameSettings.MasterVolume;
+		}
+		if (settingsChanged == true)
+		{
+			bgMusicSource.volume = GameSettings.MasterVolume;
+			settingsChanged = false;
+		}
+		if (startedPlaying == false)
+		{
+			GameManager.Instance.Load();
+			if (SceneManager.GetActiveScene().name == "MainMenu")
+			{
+				bgMusicSource.clip = bgMusic[0];
+			}
+			else
+			{
+				bgMusicSource.clip = bgMusic[Random.Range(1, bgMusic.Length)];
+			}
+			startedPlaying = true;
+			Invoke("PlayMusic", fadeInDelay);
+		}
 	}
 
 	void Awake()
@@ -93,7 +121,7 @@ public class MusicController : MonoBehaviour
 
 	public void PlayMusic()
 	{
-		bgMusicSource.clip = bgMusic[Random.Range(0, bgMusic.Length)];
+		bgMusicSource.volume = 0f;
 		bgMusicSource.Play();
 		StartCoroutine(FadeIn(bgMusicSource));
 	}
@@ -101,24 +129,32 @@ public class MusicController : MonoBehaviour
 	public void StopMusic()
 	{
 		StartCoroutine(FadeOut(bgMusicSource));
-		bgMusicSource.Stop();
 	}
 
 	IEnumerator FadeIn(AudioSource audioSource)
 	{
-		while (audioSource.volume <= 1f)
+		isFading = true;
+		while (audioSource.volume <= GameSettings.MasterVolume)
 		{
-			audioSource.volume += Time.deltaTime;
-			yield return new WaitForSeconds(fadeSpeed);
+			audioSource.volume += Time.deltaTime / fadeTime;
+			yield return 0;
 		}
+		isFading = false;
 	}
 
 	IEnumerator FadeOut(AudioSource audioSource)
 	{
-		while (audioSource.volume >= 1f)
+		isFading = true;
+		while (audioSource.volume >= 0.001f)
 		{
-			audioSource.volume -= Time.deltaTime;
-			yield return new WaitForSeconds(fadeSpeed);
+			audioSource.volume -= Time.deltaTime / fadeTime;
+			yield return 0;
 		}
+		if (audioSource.volume <= 0.001f)
+		{
+			audioSource.volume = 0;
+		}
+		isFading = false;
+		bgMusicSource.Stop();
 	}
 }

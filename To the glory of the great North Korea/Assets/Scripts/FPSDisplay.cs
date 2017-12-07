@@ -3,36 +3,41 @@ using UnityEngine;
 
 public class FPSDisplay : MonoBehaviour
 {
-	private float deltaTime = 0f;
+	float fps;
+	float deltaTime = 0f;
 
-	void Update()
+	IEnumerator Start()
 	{
-		deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+		while (true)
+		{
+			fps = (1 / Time.deltaTime);
+			deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+			yield return new WaitForSeconds(0.1f);
+		}
 	}
 
 	void OnGUI()
 	{
 		float msec = deltaTime * 1000f;
-		float fps = 1f / deltaTime;
 
 		if (fps > 60)
 		{
 			GUI.color = Color.green;
 		}
-		else if (fps < 60)
+		else if (fps <= 60 && fps > 30)
 		{
 			GUI.color = Color.yellow;
 		}
-		else
+		else if (fps <= 30)
 		{
 			GUI.color = Color.red;
 		}
 
-		string text = string.Format("{0:0.0} ms ({1:0} fps)", msec, fps);
+		string label = string.Format("{0:0.0} ms ({1:0} fps)", msec, fps);
 
 		Color oldColor = GUI.color;
 		GUI.backgroundColor = Color.black;
-		GUI.Box(new Rect(5, 5, 120f, 25f), text);
+		GUI.Box(new Rect(5, 5, 120f, 25f), label);
 		GUI.backgroundColor = oldColor;
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -49,6 +50,7 @@ public class PauseMenu : MonoBehaviour
 	public void Menu()
 	{
 		Toggle();
+		MusicController.Instance.StopMusic();
 		sceneFade.FadeTo(mainMenuSceneName);
 	}
 }
