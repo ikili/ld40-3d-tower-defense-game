@@ -16,6 +16,10 @@ public class EnemyMovement : MonoBehaviour
 		GameObject wayPointsGO = GameObject.FindGameObjectWithTag("Waypoints" + enemy.startNodeID.ToString());
 		wayPoints = wayPointsGO.GetComponent<Waypoints>();
 		target = wayPoints.points[0];
+		/*if (GameSettings.Difficulty > 6)
+		{
+			enemy.moneyDrop = (int)(enemy.moneyDrop / 2);
+		}*/
 	}
 
 	void FixedUpdate()

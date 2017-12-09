@@ -456,7 +456,7 @@ MonoBehaviour:
   startSpeed: 12.5
   speed: 5
   startNodeID: 1
-  startHealth: 450
+  startHealth: 700
   moneyDrop: 225
   enemyDeathParticle: {fileID: 1266831566983248, guid: 1ce61d2eae0657e4c81c2d6fb7c3cb02,
     type: 2}

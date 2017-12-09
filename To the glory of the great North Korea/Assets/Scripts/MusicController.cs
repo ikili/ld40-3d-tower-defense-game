@@ -5,7 +5,7 @@ using System.Collections;
 public class MusicController : MonoBehaviour
 {
 	public static MusicController Instance;
-	public float fadeTime = 2f;
+	//public float fadeTime = 2f;
 	public float fadeInDelay = 0.5f;
 	[HideInInspector]
 	public bool startedPlaying = false;
@@ -42,6 +42,7 @@ public class MusicController : MonoBehaviour
 		}
 		if (startedPlaying == false)
 		{
+			startedPlaying = true;
 			GameManager.Instance.Load();
 			if (SceneManager.GetActiveScene().name == "MainMenu")
 			{
@@ -51,7 +52,6 @@ public class MusicController : MonoBehaviour
 			{
 				bgMusicSource.clip = bgMusic[Random.Range(1, bgMusic.Length)];
 			}
-			startedPlaying = true;
 			Invoke("PlayMusic", fadeInDelay);
 		}
 	}
@@ -139,9 +139,9 @@ public class MusicController : MonoBehaviour
 	IEnumerator FadeIn(AudioSource audioSource)
 	{
 		isFading = true;
-		while (audioSource.volume <= GameSettings.MasterVolume && interrupt == false)
+		while (audioSource.volume < GameSettings.MasterVolume && interrupt == false)
 		{
-			audioSource.volume += Time.deltaTime / fadeTime;
+			audioSource.volume += Time.deltaTime * GameSettings.MasterVolume;
 			yield return 0;
 		}
 		isFading = false;
@@ -155,16 +155,16 @@ public class MusicController : MonoBehaviour
 	IEnumerator FadeOut(AudioSource audioSource)
 	{
 		isFading = true;
-		while (audioSource.volume >= 0.001f && interrupt == false)
+		while (audioSource.volume >= 0.05f && interrupt == false)
 		{
-			audioSource.volume -= Time.deltaTime / fadeTime;
+			audioSource.volume -= Time.deltaTime * GameSettings.MasterVolume/* / fadeTime*/;
 			yield return 0;
 		}
-		isFading = false;
-		if (audioSource.volume <= 0.001f)
+		if (audioSource.volume <= 0.05f)
 		{
 			audioSource.volume = 0;
 		}
+		isFading = false;
 		if (interrupt == false)
 		{
 			bgMusicSource.Stop();

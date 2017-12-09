@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
 	[Header("HealthUI")]
 	public RectTransform healthBar;
 	private float health;
+	private bool isAlreadyDead = false;
 
 	void Start()
 	{
@@ -26,7 +27,7 @@ public class Enemy : MonoBehaviour
 	{
 		health -= amount;
 		healthBar.offsetMax = new Vector2(-(100f - (health / startHealth * 100f)), 0f);
-		if (health <= 0)
+		if (health <= 0 && isAlreadyDead == false)
 		{
 			Die();
 		}
@@ -39,14 +40,15 @@ public class Enemy : MonoBehaviour
 
 	void Die()
 	{
+		isAlreadyDead = true;
 		PlayerStats.Money += moneyDrop;
-		WaveSpawner.EnemiesAlive--;
 		if (BuildManager.HoveredNode != null)
 		{
 			BuildManager.HoveredNode.OnMouseEnter();
 		}
-
 		Instantiate(enemyDeathParticle, new Vector3(transform.position.x, 2f, transform.position.z), Quaternion.identity);
 		Destroy(gameObject);
+		WaveSpawner.EnemiesAlive--;
+		WaveSpawner.EnemiesKilled++;
 	}
 }

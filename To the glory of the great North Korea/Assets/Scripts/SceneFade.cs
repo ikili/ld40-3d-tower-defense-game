@@ -16,6 +16,14 @@ public class SceneFade : MonoBehaviour
 
 	public void FadeTo(string scene)
 	{
+		if (MusicController.Instance.isFading == true)
+		{
+			MusicController.Instance.interrupt = true;
+		}
+		else
+		{
+			MusicController.Instance.StopMusic();
+		}
 		StartCoroutine(FadeOut(scene));
 	}
 

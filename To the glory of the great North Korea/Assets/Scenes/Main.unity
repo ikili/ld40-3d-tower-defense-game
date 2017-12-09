@@ -6460,8 +6460,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 304378628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 495.5, y: 280.5, z: 0}
-  m_LocalScale: {x: 0.935, y: 0.935, z: 0.935}
+  m_LocalPosition: {x: 681.5, y: 333.5, z: 0}
+  m_LocalScale: {x: 1.1116667, y: 1.1116667, z: 1.1116667}
   m_Children:
   - {fileID: 501301750}
   - {fileID: 1089858472}
@@ -7956,12 +7956,12 @@ Prefab:
     - target: {fileID: 224101671574485540, guid: 37fa42b670fd3eb47a14fb5cbeee6e80,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 495.5
+      value: 681.5
       objectReference: {fileID: 0}
     - target: {fileID: 224101671574485540, guid: 37fa42b670fd3eb47a14fb5cbeee6e80,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 280.5
+      value: 333.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37fa42b670fd3eb47a14fb5cbeee6e80, type: 2}
@@ -10828,22 +10828,22 @@ MonoBehaviour:
     prefab: {fileID: 1863900340312458, guid: e39544c10d50cbf46b1ca606b8a85f8b, type: 2}
     upgradedPrefab: {fileID: 1863900340312458, guid: a5bab6e607a5d78419d8d712c49c82a8,
       type: 2}
-    cost: 350
-    upgradeCost: 1050
+    cost: 300
+    upgradeCost: 900
     priceText: {fileID: 616487390}
   missileLauncher:
     prefab: {fileID: 1909902027218920, guid: 444361fe1f6b85e45ab80b2e2be39d35, type: 2}
     upgradedPrefab: {fileID: 1909902027218920, guid: ec5853ad90394a74eaa56adb3de1d13e,
       type: 2}
-    cost: 400
-    upgradeCost: 1200
+    cost: 600
+    upgradeCost: 1800
     priceText: {fileID: 167748664}
   laserBeamer:
     prefab: {fileID: 1521419518941172, guid: feae80c15a3018544a95722f37e93c9a, type: 2}
     upgradedPrefab: {fileID: 1521419518941172, guid: d7347e60dfbb7f640ae61e9e2ff9fad4,
       type: 2}
-    cost: 600
-    upgradeCost: 1800
+    cost: 900
+    upgradeCost: 2700
     priceText: {fileID: 486874953}
 --- !u!95 &501301755
 Animator:
@@ -39679,7 +39679,7 @@ MonoBehaviour:
   m_MinValue: 0.85
   m_MaxValue: 0.97
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.85
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -42012,7 +42012,7 @@ MonoBehaviour:
     - {fileID: 1142940332077892, guid: 57d0411e34384ec45afb2d1134ba009e, type: 2}
     - {fileID: 1160300482823330, guid: 5bd14d023fc78a940b95e9c4b24aec99, type: 2}
     count: 3
-    rate: 1
+    rate: 2
   - enemies:
     - {fileID: 1672530561463498, guid: c47a9fb64baa5f24990d646f23c102f5, type: 2}
     - {fileID: 1874594678915574, guid: 16a0542f66369f846b1fcc542abc6a70, type: 2}
@@ -42020,7 +42020,7 @@ MonoBehaviour:
     - {fileID: 1790257600686502, guid: 40e90aeb45541964ea08f92588107e26, type: 2}
     - {fileID: 1757566698270476, guid: aec46128cdf19dd41896c26ce3e536d1, type: 2}
     count: 4
-    rate: 1
+    rate: 2
   - enemies:
     - {fileID: 1672530561463498, guid: 8bca07f3e35149f4cbb0edd6b8e6173d, type: 2}
     - {fileID: 1672530561463498, guid: c47a9fb64baa5f24990d646f23c102f5, type: 2}
@@ -42031,7 +42031,7 @@ MonoBehaviour:
     - {fileID: 1790257600686502, guid: 40e90aeb45541964ea08f92588107e26, type: 2}
     - {fileID: 1757566698270476, guid: aec46128cdf19dd41896c26ce3e536d1, type: 2}
     count: 6
-    rate: 1
+    rate: 3
   - enemies:
     - {fileID: 1672530561463498, guid: 8bca07f3e35149f4cbb0edd6b8e6173d, type: 2}
     - {fileID: 1672530561463498, guid: c47a9fb64baa5f24990d646f23c102f5, type: 2}
@@ -42044,7 +42044,7 @@ MonoBehaviour:
     - {fileID: 1652883123353018, guid: 149d7e0b5faa70b4aa66bf09c56a2d95, type: 2}
     - {fileID: 1675537040096134, guid: 3390770560af11e48902d7c47189e9ef, type: 2}
     count: 6
-    rate: 1
+    rate: 3
   - enemies:
     - {fileID: 1672530561463498, guid: 8bca07f3e35149f4cbb0edd6b8e6173d, type: 2}
     - {fileID: 1672530561463498, guid: c47a9fb64baa5f24990d646f23c102f5, type: 2}
@@ -42057,7 +42057,7 @@ MonoBehaviour:
     - {fileID: 1655504928759354, guid: acf208d5a53706842a80f8641b5550f5, type: 2}
     - {fileID: 1894331705684140, guid: 8ba81174ab60a85419dc2e00652c644f, type: 2}
     count: 6
-    rate: 1
+    rate: 4
   - enemies:
     - {fileID: 1672530561463498, guid: 8bca07f3e35149f4cbb0edd6b8e6173d, type: 2}
     - {fileID: 1672530561463498, guid: c47a9fb64baa5f24990d646f23c102f5, type: 2}
@@ -42072,7 +42072,7 @@ MonoBehaviour:
     - {fileID: 1655504928759354, guid: acf208d5a53706842a80f8641b5550f5, type: 2}
     - {fileID: 1894331705684140, guid: 8ba81174ab60a85419dc2e00652c644f, type: 2}
     count: 6
-    rate: 1
+    rate: 4
   spawnPoints:
   - {fileID: 1282072080}
   - {fileID: 867281075}
@@ -42187,7 +42187,7 @@ MonoBehaviour:
   startScrollSpeed: 0.15
   startPanSpeed: 50
   startDifficulty: 4
-  startDebugMode: 1
+  startDebugMode: 0
 --- !u!114 &2116959472
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,17 +20,20 @@ public class WaveSpawner : MonoBehaviour
 	public GameObject waveNumberGO;
 
 	private int previousWaveIndex = -1;
-	private float countdown = 2f;
+	private float countdown;
 	private TextMeshProUGUI waveCountdownText;
 	private TextMeshProUGUI waveNumberText;
+	private bool finishedSpawningWave = true;
+	private bool setCountdown = true;
 
-	private int enemiesSpawned = 0;
-	private int enemiesSpawnedThisWave = 0;
+	public static int EnemiesSpawned = 0;
+	public static int EnemiesKilled = 0;
 
 	void Start()
 	{
 		waveCountdownText = waveCountdownGO.GetComponent<TextMeshProUGUI>();
 		waveNumberText = waveNumberGO.GetComponent<TextMeshProUGUI>();
+		countdown = timeBetweenWaves;
 	}
 
 	void Update()
@@ -39,27 +42,38 @@ public class WaveSpawner : MonoBehaviour
 		countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
 		waveCountdownText.text = string.Format("{0:00.00}", countdown);
 		waveNumberText.text = "WAVE: " + (PlayerStats.WaveNumber).ToString();
-		if (EnemiesAlive > 0)
+		if (EnemiesAlive > 0 || finishedSpawningWave == false)
 		{
 			return;
 		}
+		else
+		{
+			if (setCountdown == false)
+			{
+				countdown = timeBetweenWaves;
+				setCountdown = true;
+			}
+		}
 		if (countdown <= 0f)
 		{
+			setCountdown = false;
+			if (EnemiesSpawned != EnemiesKilled)
+			{
+				Debug.Log("EnemiesSpawned: " + EnemiesSpawned + " EnemiesKilled: " + EnemiesKilled);
+			}
 			PlayerStats.WaveNumber++;
 			if (PlayerStats.WaveNumber > waves.Length)
 			{
 				difficulty = ((Mathf.Pow(1.06f, (float)PlayerStats.WaveNumber) / (float)(10 - GameSettings.Difficulty)) + 1);
 			}
 			StartCoroutine(SpawnWave());
-			countdown = timeBetweenWaves;
 			return;
 		}
 	}
 
 	IEnumerator SpawnWave()
 	{
-		enemiesSpawnedThisWave = 0;
-
+		finishedSpawningWave = false;
 		int randomWave = 1;
 
 		if (PlayerStats.WaveNumber > waves.Length)
@@ -73,6 +87,14 @@ public class WaveSpawner : MonoBehaviour
 		else
 		{
 			randomWave = PlayerStats.WaveNumber - 1;
+		}
+		if (PlayerStats.WaveNumber > 3 && GameSettings.Difficulty > 6)
+		{
+			randomWave = Random.Range(6, waves.Length);
+		}
+		if (PlayerStats.WaveNumber <= 3 && GameSettings.Difficulty > 6)
+		{
+			randomWave = PlayerStats.WaveNumber + 2;
 		}
 
 		customWave.enemies = new GameObject[waves[randomWave].enemies.Length];
@@ -91,6 +113,8 @@ public class WaveSpawner : MonoBehaviour
 			SpawnEnemy(randomSpawnPoint, customWave.enemies[randomEnemyToSpawn]);
 			yield return new WaitForSeconds(1f / customWave.rate);
 		}
+
+		finishedSpawningWave = true;
 		/*
 		Debug.Log("Difficulty = " + difficulty);
 		Debug.Log("EnemiesSpawned = " + enemiesSpawned);
@@ -105,7 +129,6 @@ public class WaveSpawner : MonoBehaviour
 		e.startNodeID = randomSpawnPoint;
 		e.startHealth *= (difficulty * 0.85f);
 		EnemiesAlive++;
-		enemiesSpawnedThisWave++;
-		enemiesSpawned++;
+		EnemiesSpawned++;
 	}
 }

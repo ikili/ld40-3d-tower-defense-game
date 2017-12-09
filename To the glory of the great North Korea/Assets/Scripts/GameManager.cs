@@ -125,7 +125,6 @@ public class GameManager : MonoBehaviour
 		Save();
 		updateAnalytics();
 		GameOver = true;
-		WaveSpawner.EnemiesAlive = 0;
 		gameOverUI.SetActive(true);
 	}
 }
