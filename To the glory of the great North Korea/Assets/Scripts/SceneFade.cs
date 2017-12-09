@@ -45,10 +45,5 @@ public class SceneFade : MonoBehaviour
 		}
 			
 		SceneManager.LoadScene(scene);
-			
-		if (MusicController.Instance.isFading == false)
-		{
-			MusicController.Instance.startedPlaying = false;
-		}
 	}
 }

@@ -41,6 +41,10 @@ public class Enemy : MonoBehaviour
 	{
 		PlayerStats.Money += moneyDrop;
 		WaveSpawner.EnemiesAlive--;
+		if (BuildManager.HoveredNode != null)
+		{
+			BuildManager.HoveredNode.OnMouseEnter();
+		}
 
 		Instantiate(enemyDeathParticle, new Vector3(transform.position.x, 2f, transform.position.z), Quaternion.identity);
 		Destroy(gameObject);

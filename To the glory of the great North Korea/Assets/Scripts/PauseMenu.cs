@@ -13,7 +13,7 @@ public class PauseMenu : MonoBehaviour
 
 	void Update()
 	{
-		if (gameOverMenu.activeSelf == false)
+		if (gameOverMenu.activeSelf == false && MusicController.Instance.isFading == false)
 		{
 			if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("p"))
 			{
@@ -50,7 +50,14 @@ public class PauseMenu : MonoBehaviour
 	public void Menu()
 	{
 		Toggle();
-		MusicController.Instance.StopMusic();
+		if (MusicController.Instance.isFading == true)
+		{
+			MusicController.Instance.interrupt = true;
+		}
+		else
+		{
+			MusicController.Instance.StopMusic();
+		}
 		sceneFade.FadeTo(mainMenuSceneName);
 	}
 }

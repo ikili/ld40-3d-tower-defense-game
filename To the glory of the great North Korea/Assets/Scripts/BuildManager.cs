@@ -3,6 +3,7 @@
 public class BuildManager : MonoBehaviour
 {
 	public static BuildManager instance;
+	public static Node HoveredNode;
 	public NodeUI nodeUI;
 	public GameObject buildParticle;
 	public GameObject sellParticle;

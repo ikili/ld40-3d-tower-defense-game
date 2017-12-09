@@ -19,7 +19,14 @@ public class MainMenu : MonoBehaviour
 	public void StartGame()
 	{
 		WaveSpawner.EnemiesAlive = 0;
-		MusicController.Instance.StopMusic();
+		if (MusicController.Instance.isFading == true)
+		{
+			MusicController.Instance.interrupt = true;
+		}
+		else
+		{
+			MusicController.Instance.StopMusic();
+		}
 		sceneFade.FadeTo(levelToLoad);
 	}
 

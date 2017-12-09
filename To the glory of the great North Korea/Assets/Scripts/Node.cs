@@ -116,7 +116,7 @@ public class Node : MonoBehaviour
 		BuildTurret(buildManager.GetTurretToBuild());
 	}
 
-	void OnMouseEnter()
+	public void OnMouseEnter()
 	{
 		if (!buildManager.CanBuild || EventSystem.current.IsPointerOverGameObject())
 		{
@@ -130,10 +130,12 @@ public class Node : MonoBehaviour
 		{
 			r.material.color = cantBuildColor;
 		}
+		BuildManager.HoveredNode = GetComponent<Node>();
 	}
 
 	void OnMouseExit()
 	{
+		BuildManager.HoveredNode = null;
 		r.material.color = startColor;
 	}
 }
