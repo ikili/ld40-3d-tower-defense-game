@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
 
 	public GameObject gameOverUI;
 	public GameObject musicControllerPrefab;
+
+	//private AnalyticsTracker analyticsTracker;
 
 	void Awake()
 	{
@@ -26,6 +29,7 @@ public class GameManager : MonoBehaviour
 	{
 		Load();
 		GameOver = false;
+		//analyticsTracker = GetComponent<AnalyticsTracker>();
 		if (MusicController.Instance == null)
 		{
 			Instantiate(musicControllerPrefab);
@@ -52,11 +56,24 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	public void updateAnalytics()
+	{
+		if (GameOver)
+		{
+			Analytics.CustomEvent("PlayerStats", new Dictionary<string, object>
+				{
+					{ "WaveNumber", PlayerStats.WaveNumber },
+					{ "HighScore", PlayerStats.HighScore },
+					{ "Money", PlayerStats.HighScore }
+				});	
+		}
+	}
+
 	public void Load()
 	{
 		PlayerStats.HighScore = PlayerPrefs.GetInt("HighScore", 0);
 		GameSettings.MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
-		GameSettings.ScrollSpeed = PlayerPrefs.GetFloat("ScrollSpeed", 150f);
+		GameSettings.ScrollSpeed = PlayerPrefs.GetFloat("ScrollSpeed", 0.15f);
 		GameSettings.PanSpeed = PlayerPrefs.GetFloat("PanSpeed", 50f);
 		GameSettings.Difficulty = PlayerPrefs.GetInt("Difficulty", 4);
 		ValidateData();
@@ -98,7 +115,7 @@ public class GameManager : MonoBehaviour
 	{
 		Mathf.Clamp(PlayerStats.HighScore, 1, Mathf.Infinity);
 		Mathf.Clamp01(GameSettings.MasterVolume);
-		Mathf.Clamp(GameSettings.ScrollSpeed, 0, 999);
+		Mathf.Clamp01(GameSettings.ScrollSpeed);
 		Mathf.Clamp(GameSettings.PanSpeed, 0, 999);
 		Mathf.Clamp(GameSettings.Difficulty, 0, 9);
 	}
@@ -106,6 +123,7 @@ public class GameManager : MonoBehaviour
 	void EndGame()
 	{
 		Save();
+		updateAnalytics();
 		GameOver = true;
 		WaveSpawner.EnemiesAlive = 0;
 		gameOverUI.SetActive(true);

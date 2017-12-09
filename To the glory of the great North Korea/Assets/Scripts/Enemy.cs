@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
 		PlayerStats.Money += moneyDrop;
 		WaveSpawner.EnemiesAlive--;
 
-		Instantiate(enemyDeathParticle, transform.position, Quaternion.identity);
+		Instantiate(enemyDeathParticle, new Vector3(transform.position.x, 2f, transform.position.z), Quaternion.identity);
 		Destroy(gameObject);
 	}
 }

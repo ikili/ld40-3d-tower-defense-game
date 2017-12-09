@@ -18,13 +18,13 @@ public class GameOver : MonoBehaviour
 	{
 		if (numberOfWavesText == null)
 		{
-			numberOfWavesText = numberOfWavesGO.GetComponent<TextMeshProUGUI>();
+			numberOfWavesText = numberOfWavesGO.GetComponentInChildren<TextMeshProUGUI>();
 			StartCoroutine(AnimateText("numberOfWaves"));
 		}
 		if (PlayerStats.HighScore > 0)
 		{
 			highScoreGO.SetActive(true);
-			highScoreText = highScoreGO.GetComponent<TextMeshProUGUI>();
+			highScoreText = highScoreGO.GetComponentInChildren<TextMeshProUGUI>();
 			StartCoroutine(AnimateText("highScore"));
 		}
 		else
@@ -35,6 +35,8 @@ public class GameOver : MonoBehaviour
 
 	IEnumerator AnimateText(string textName)
 	{
+		float delay = 1f;
+
 		numberOfWavesText.text = "0";
 		if (textName == "highScore")
 		{
@@ -47,21 +49,23 @@ public class GameOver : MonoBehaviour
 
 		if (textName == "numberOfWaves")
 		{
+			delay = 1f / (delay + PlayerStats.WaveNumber) + 0.01f;
 			while (wave < PlayerStats.WaveNumber)
 			{
 				wave++;
 				numberOfWavesText.text = wave.ToString();
-				yield return new WaitForSeconds(0.05f);
+				yield return new WaitForSeconds(delay);
 			}
 		}
 
 		if (textName == "highScore")
 		{
+			delay = 1f / (delay + PlayerStats.HighScore) + 0.01f;
 			while (wave < PlayerStats.HighScore)
 			{
 				wave++;
 				highScoreText.text = wave.ToString();
-				yield return new WaitForSeconds(0.05f);
+				yield return new WaitForSeconds(delay);
 			}
 		}
 	}

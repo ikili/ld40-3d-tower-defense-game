@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Options : MonoBehaviour
 {
 	public Slider volumeSlider;
-	public InputField scrollSpeedInputField;
+	public Slider scrollSpeedSlider;
 	public InputField panSpeedInputField;
 	public InputField difficultyInputField;
 
@@ -22,10 +22,9 @@ public class Options : MonoBehaviour
 			{
 				GameManager.Instance.Load();
 				volumeSlider.value = GameSettings.MasterVolume;
-				Text scrollSpeedPlaceholder = scrollSpeedInputField.GetComponentInChildren<Text>();
+				scrollSpeedSlider.value = (1f - GameSettings.ScrollSpeed);
 				Text panSpeedPlaceholder = panSpeedInputField.GetComponentInChildren<Text>();
 				Text difficultyPlaceholder = difficultyInputField.GetComponentInChildren<Text>();
-				scrollSpeedPlaceholder.text = "Current: " + GameSettings.ScrollSpeed + " Default: 150";
 				panSpeedPlaceholder.text = "Current: " + GameSettings.PanSpeed + " Default: 50";
 				difficultyPlaceholder.text = "Current: " + GameSettings.Difficulty + " Default: 4";
 				startSetup = false;
@@ -45,13 +44,10 @@ public class Options : MonoBehaviour
 		MusicController.Instance.settingsChanged = true;
 	}
 
-	public void SetScrollSpeed(string str)
+	public void SetScrollSpeed(float value)
 	{
-		if (str == "")
-		{
-			return;
-		}
-		float value = float.Parse(str);
+		value = Mathf.Clamp01(value);
+		value = 1f - value;
 		GameSettings.ScrollSpeed = value;
 	}
 
@@ -80,8 +76,6 @@ public class Options : MonoBehaviour
 		startSetup = true;
 		otherMenu.SetActive(true);
 		options.SetActive(false);
-		scrollSpeedInputField.Select();
-		scrollSpeedInputField.text = "";
 		panSpeedInputField.Select();
 		panSpeedInputField.text = "";
 		difficultyInputField.Select();

@@ -20,12 +20,19 @@ public class EnemyMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		Vector3 dir = target.position - transform.position;
-		transform.Translate(dir.normalized * enemy.speed * Time.deltaTime, Space.World);
+		Vector3 dir = target.position - this.transform.localPosition;
 
-		if (Vector3.Distance(transform.position, target.position) <= 0.4f)
+		float distThisFrame = enemy.speed * Time.deltaTime;
+
+		if (dir.magnitude <= distThisFrame)
 		{
 			GetNextWaypoint();
+		}
+		else
+		{
+			transform.Translate(dir.normalized * distThisFrame, Space.World);
+			Quaternion targetRotation = Quaternion.LookRotation(dir);
+			this.transform.rotation = Quaternion.Lerp(this.transform.rotation, targetRotation, Time.deltaTime * (enemy.speed * 0.75f));
 		}
 
 		enemy.speed = enemy.startSpeed;

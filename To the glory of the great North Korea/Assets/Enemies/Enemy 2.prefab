@@ -188,8 +188,7 @@ MonoBehaviour:
   moneyDrop: 100
   enemyDeathParticle: {fileID: 1266831566983248, guid: 1ce61d2eae0657e4c81c2d6fb7c3cb02,
     type: 2}
-  healthBar: {fileID: 224078245196619918, guid: 1471c651854669844b2a546b90f938c0,
-    type: 2}
+  healthBar: {fileID: 224344413214764692}
 --- !u!114 &114527530522072324
 MonoBehaviour:
   m_ObjectHideFlags: 1

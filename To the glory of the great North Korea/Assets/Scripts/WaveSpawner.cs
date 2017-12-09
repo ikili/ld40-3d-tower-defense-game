@@ -38,13 +38,14 @@ public class WaveSpawner : MonoBehaviour
 		countdown -= Time.deltaTime;
 		countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
 		waveCountdownText.text = string.Format("{0:00.00}", countdown);
-		waveNumberText.text = "WAVE: " + PlayerStats.WaveNumber.ToString();
+		waveNumberText.text = "WAVE: " + (PlayerStats.WaveNumber).ToString();
 		if (EnemiesAlive > 0)
 		{
 			return;
 		}
 		if (countdown <= 0f)
 		{
+			PlayerStats.WaveNumber++;
 			if (PlayerStats.WaveNumber > waves.Length)
 			{
 				difficulty = ((Mathf.Pow(1.06f, (float)PlayerStats.WaveNumber) / (float)(10 - GameSettings.Difficulty)) + 1);
@@ -65,7 +66,7 @@ public class WaveSpawner : MonoBehaviour
 		{
 			while (randomWave == previousWaveIndex)
 			{
-				randomWave = Random.Range(0, waves.Length);
+				randomWave = Random.Range(5, waves.Length);
 			}
 			previousWaveIndex = randomWave;
 		}
@@ -77,14 +78,7 @@ public class WaveSpawner : MonoBehaviour
 		customWave.enemies = new GameObject[waves[randomWave].enemies.Length];
 		customWave.enemies = (GameObject[])waves[randomWave].enemies.Clone();
 		customWave.rate = waves[randomWave].rate;
-		if (PlayerStats.WaveNumber <= waves.Length)
-		{
-			customWave.count = waves[randomWave].count;
-		}
-		else
-		{
-			customWave.count = (int)(6 * difficulty);
-		}
+		customWave.count = (int)(customWave.count * difficulty);
 
 		int randomSpawnPoint;
 		int randomEnemyToSpawn;
@@ -102,12 +96,11 @@ public class WaveSpawner : MonoBehaviour
 		Debug.Log("EnemiesSpawned = " + enemiesSpawned);
 		Debug.Log("EnemiesSpawnedThisWave = " + enemiesSpawnedThisWave);
 		*/
-		PlayerStats.WaveNumber++;
 	}
 
 	void SpawnEnemy(int randomSpawnPoint, GameObject enemy)
 	{
-		GameObject enemyGO = Instantiate(enemy, spawnPoints[randomSpawnPoint].position, spawnPoints[randomSpawnPoint].rotation);
+		GameObject enemyGO = Instantiate(enemy, new Vector3(spawnPoints[randomSpawnPoint].position.x, 0f, spawnPoints[randomSpawnPoint].position.z), spawnPoints[randomSpawnPoint].rotation);
 		Enemy e = enemyGO.GetComponent<Enemy>();
 		e.startNodeID = randomSpawnPoint;
 		e.startHealth *= (difficulty * 0.85f);

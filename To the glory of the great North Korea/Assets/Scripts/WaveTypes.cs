@@ -4,6 +4,7 @@
 public class WaveTypes
 {
 	public GameObject[] enemies;
-	public int count;
+	[HideInInspector]
+	public int count = 6;
 	public float rate;
 }
