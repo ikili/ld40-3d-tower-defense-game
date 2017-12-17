@@ -35,3 +35,7 @@ It is a tower defence style game inspired by [Brackeys](https://www.youtube.com/
 * Optimization
 
 **If the game is too easy or too hard for you, change difficulty in options!** :wink:
+
+## Links:
+* Ludum Dare 40 game entry post: https://ldjam.com/events/ludum-dare/40/to-the-glory-of-the-great-north-korea
+* Game trailer: https://www.youtube.com/watch?v=dVVymKLwRY8
