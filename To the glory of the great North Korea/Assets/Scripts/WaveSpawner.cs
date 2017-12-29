@@ -57,14 +57,14 @@ public class WaveSpawner : MonoBehaviour
 		if (countdown <= 0f)
 		{
 			setCountdown = false;
-			if (EnemiesSpawned != EnemiesKilled)
+			/*if (EnemiesSpawned != EnemiesKilled)
 			{
 				Debug.Log("EnemiesSpawned: " + EnemiesSpawned + " EnemiesKilled: " + EnemiesKilled);
-			}
+			}*/
 			PlayerStats.WaveNumber++;
 			if (PlayerStats.WaveNumber > waves.Length)
 			{
-				difficulty = ((Mathf.Pow(1.06f, (float)PlayerStats.WaveNumber) / (float)(10 - GameSettings.Difficulty)) + 1);
+				difficulty = ((Mathf.Pow(1.01f, (float)(3 * PlayerStats.WaveNumber)) / (float)(10 - GameSettings.Difficulty)) + 1);
 			}
 			StartCoroutine(SpawnWave());
 			return;
@@ -100,7 +100,14 @@ public class WaveSpawner : MonoBehaviour
 		customWave.enemies = new GameObject[waves[randomWave].enemies.Length];
 		customWave.enemies = (GameObject[])waves[randomWave].enemies.Clone();
 		customWave.rate = waves[randomWave].rate;
-		customWave.count = (int)(customWave.count * difficulty);
+		customWave.count = waves[randomWave].count;
+		customWave.count += (int)(PlayerStats.WaveNumber / 4 * difficulty);
+		customWave.count = Mathf.Clamp(customWave.count, 6, 100);
+		if (PlayerStats.WaveNumber > waves.Length)
+		{
+			customWave.rate = 2 * difficulty;
+		}
+		customWave.rate = Mathf.Clamp(customWave.count, 1, 10);
 
 		int randomSpawnPoint;
 		int randomEnemyToSpawn;
@@ -124,10 +131,10 @@ public class WaveSpawner : MonoBehaviour
 
 	void SpawnEnemy(int randomSpawnPoint, GameObject enemy)
 	{
-		GameObject enemyGO = Instantiate(enemy, new Vector3(spawnPoints[randomSpawnPoint].position.x, 0f, spawnPoints[randomSpawnPoint].position.z), spawnPoints[randomSpawnPoint].rotation);
+		GameObject enemyGO = Instantiate(enemy, new Vector3(spawnPoints[randomSpawnPoint].position.x, -0.45f, spawnPoints[randomSpawnPoint].position.z), spawnPoints[randomSpawnPoint].rotation);
 		Enemy e = enemyGO.GetComponent<Enemy>();
 		e.startNodeID = randomSpawnPoint;
-		e.startHealth *= (difficulty * 0.85f);
+		e.startHealth *= (float)(PlayerStats.WaveNumber / 10) * difficulty + 0.9f;
 		EnemiesAlive++;
 		EnemiesSpawned++;
 	}

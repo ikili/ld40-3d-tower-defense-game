@@ -25,8 +25,8 @@ public class Options : MonoBehaviour
 				scrollSpeedSlider.value = (1f - GameSettings.ScrollSpeed);
 				Text panSpeedPlaceholder = panSpeedInputField.GetComponentInChildren<Text>();
 				Text difficultyPlaceholder = difficultyInputField.GetComponentInChildren<Text>();
-				panSpeedPlaceholder.text = "Current: " + GameSettings.PanSpeed + " Default: 50";
-				difficultyPlaceholder.text = "Current: " + GameSettings.Difficulty + " Default: 4";
+				panSpeedPlaceholder.text = "Current: " + GameSettings.PanSpeed + " Default: 100";
+				difficultyPlaceholder.text = "Current: " + GameSettings.Difficulty + " Default: 5";
 				startSetup = false;
 			}
 		}

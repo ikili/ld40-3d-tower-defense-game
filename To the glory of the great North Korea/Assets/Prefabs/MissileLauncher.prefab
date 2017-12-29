@@ -457,10 +457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e82c4103addaa1e4e95c4b882e5e55ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 30
+  range: 25
   bulletPrefab: {fileID: 1958917325430928, guid: bb33fcc9178d070419bb32dc79205f0e,
     type: 2}
-  turnSpeed: 5
+  turnSpeed: 10
   fireRate: 0.5
   lineRenderer: {fileID: 0}
   impactParticle: {fileID: 0}

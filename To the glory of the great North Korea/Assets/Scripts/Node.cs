@@ -133,7 +133,7 @@ public class Node : MonoBehaviour
 		BuildManager.HoveredNode = GetComponent<Node>();
 	}
 
-	void OnMouseExit()
+	public void OnMouseExit()
 	{
 		BuildManager.HoveredNode = null;
 		r.material.color = startColor;

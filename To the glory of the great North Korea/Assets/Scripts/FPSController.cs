@@ -12,7 +12,7 @@ public class FPSController : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown("f"))
+		if (Input.GetButtonDown("Toggle FPS Counter"))
 		{
 			if (showFPS == false)
 			{

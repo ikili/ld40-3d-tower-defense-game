@@ -36,6 +36,7 @@ public class Turret : MonoBehaviour
 
 	void UpdateTarget()
 	{
+		/*
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 		GameObject nearestEnemy = null;
 		float shortestDistance = Mathf.Infinity;
@@ -47,6 +48,24 @@ public class Turret : MonoBehaviour
 			{
 				shortestDistance = distanceToEnemy;
 				nearestEnemy = enemy;
+			}
+		}
+ 		*/
+		Collider[] enemies = Physics.OverlapSphere(transform.position, range);
+
+		GameObject nearestEnemy = null;
+		float shortestDistance = Mathf.Infinity;
+
+		foreach (Collider enemy in enemies)
+		{
+			if (enemy.tag == enemyTag)
+			{
+				float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+				if (distanceToEnemy < shortestDistance)
+				{
+					shortestDistance = distanceToEnemy;
+					nearestEnemy = enemy.gameObject;
+				}
 			}
 		}
 
@@ -63,6 +82,10 @@ public class Turret : MonoBehaviour
 
 	void Update()
 	{
+		if (target != null && target.tag != enemyTag)
+		{
+			target = null;
+		}
 		if (target == null)
 		{
 			if (useLaser)

@@ -10,8 +10,8 @@ public class GameSettings : MonoBehaviour
 
 	public float startMasterVolume = 1f;
 	public float startScrollSpeed = 0.15f;
-	public float startPanSpeed = 50f;
-	public int startDifficulty = 4;
+	public float startPanSpeed = 100f;
+	public int startDifficulty = 5;
 	public bool startDebugMode = false;
 
 	void Start()

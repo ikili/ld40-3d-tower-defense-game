@@ -15,7 +15,7 @@ public class PauseMenu : MonoBehaviour
 	{
 		if (gameOverMenu.activeSelf == false)
 		{
-			if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("p"))
+			if (Input.GetButtonDown("Pause"))
 			{
 				Toggle();
 			}

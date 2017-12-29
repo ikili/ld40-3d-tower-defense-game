@@ -460,7 +460,7 @@ MonoBehaviour:
   range: 45
   bulletPrefab: {fileID: 1958917325430928, guid: ffb1d57ae96fbb54dbe1579cd856847a,
     type: 2}
-  turnSpeed: 5
+  turnSpeed: 10
   fireRate: 0.75
   lineRenderer: {fileID: 0}
   impactParticle: {fileID: 0}

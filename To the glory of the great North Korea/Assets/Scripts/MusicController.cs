@@ -5,7 +5,6 @@ using System.Collections;
 public class MusicController : MonoBehaviour
 {
 	public static MusicController Instance;
-	//public float fadeTime = 2f;
 	public float fadeInDelay = 0.5f;
 	[HideInInspector]
 	public bool startedPlaying = false;

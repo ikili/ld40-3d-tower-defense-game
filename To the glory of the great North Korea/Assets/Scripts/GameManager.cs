@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
 	public GameObject gameOverUI;
 	public GameObject musicControllerPrefab;
 
-	//private AnalyticsTracker analyticsTracker;
-
 	void Awake()
 	{
 		if (Instance == null)
@@ -29,7 +27,6 @@ public class GameManager : MonoBehaviour
 	{
 		Load();
 		GameOver = false;
-		//analyticsTracker = GetComponent<AnalyticsTracker>();
 		if (MusicController.Instance == null)
 		{
 			Instantiate(musicControllerPrefab);
@@ -39,11 +36,19 @@ public class GameManager : MonoBehaviour
 
 	void Update()
 	{
-		if (GameSettings.DebugMode)
+		if (Input.GetButtonDown("Toggle GameOver"))
 		{
-			if (Input.GetKeyDown("e"))
+			EndGame();
+		}
+		if (Input.GetButtonDown("Mute BG Music"))
+		{
+			if (MusicController.Instance.bgMusicSource.isPlaying)
 			{
-				EndGame();
+				MusicController.Instance.bgMusicSource.Pause();
+			}
+			else
+			{
+				MusicController.Instance.bgMusicSource.UnPause();
 			}
 		}
 		if (GameOver)
@@ -64,7 +69,9 @@ public class GameManager : MonoBehaviour
 				{
 					{ "WaveNumber", PlayerStats.WaveNumber },
 					{ "HighScore", PlayerStats.HighScore },
-					{ "Money", PlayerStats.HighScore }
+					{ "Money", PlayerStats.Money },
+					{ "FinalDifficulty", GameSettings.Difficulty },
+					{ "PlayTime(s)", (int)Time.unscaledTime }
 				});	
 		}
 	}
@@ -74,8 +81,8 @@ public class GameManager : MonoBehaviour
 		PlayerStats.HighScore = PlayerPrefs.GetInt("HighScore", 0);
 		GameSettings.MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
 		GameSettings.ScrollSpeed = PlayerPrefs.GetFloat("ScrollSpeed", 0.15f);
-		GameSettings.PanSpeed = PlayerPrefs.GetFloat("PanSpeed", 50f);
-		GameSettings.Difficulty = PlayerPrefs.GetInt("Difficulty", 4);
+		GameSettings.PanSpeed = PlayerPrefs.GetFloat("PanSpeed", 100f);
+		GameSettings.Difficulty = PlayerPrefs.GetInt("Difficulty", 5);
 		ValidateData();
 
 		/*
@@ -91,8 +98,8 @@ public class GameManager : MonoBehaviour
 		ValidateData();
 		if (PlayerStats.WaveNumber > PlayerStats.HighScore)
 		{
-			
-			PlayerPrefs.SetInt("HighScore", PlayerStats.WaveNumber);
+			PlayerStats.HighScore = PlayerStats.WaveNumber;
+			PlayerPrefs.SetInt("HighScore", PlayerStats.HighScore);
 		}
 		else if (PlayerPrefs.HasKey("HighScore") == false)
 		{
@@ -123,8 +130,8 @@ public class GameManager : MonoBehaviour
 	void EndGame()
 	{
 		Save();
-		updateAnalytics();
 		GameOver = true;
+		updateAnalytics();
 		gameOverUI.SetActive(true);
 	}
 }

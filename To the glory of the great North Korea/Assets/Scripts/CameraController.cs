@@ -3,9 +3,7 @@
 public class CameraController : MonoBehaviour
 {
 	[Header("Attributes")]
-	public float panSpeed = 30f;
 	public float panMargin = 10f;
-	public float scrollSpeed = 100f;
 	[Header("Clamp Values")]
 	public float minX = 0f;
 	public float maxX = 80f;
@@ -13,9 +11,13 @@ public class CameraController : MonoBehaviour
 	public float maxY = 80f;
 	public float minZ = -10f;
 	public float maxZ = 70f;
+	[Header("Camera Fixed Positions")]
+	public Vector3[] fixedPositions;
 
 	private bool doMovement = true;
+	private bool movingToPos = false;
 	private Vector3 moveVelocity;
+	private Vector3 targetPos;
 	BuildManager buildManager;
 
 	void Start()
@@ -25,19 +27,16 @@ public class CameraController : MonoBehaviour
 
 	void Update()
 	{
-		panSpeed = GameSettings.PanSpeed;
-		scrollSpeed = GameSettings.ScrollSpeed;
-
 		if (GameManager.GameOver)
 		{
 			this.enabled = false;
 			return;
 		}
-		if (Input.GetKeyDown("."))
+		if (Input.GetButtonDown("Freeze Camera"))
 		{
 			doMovement = !doMovement;
 		}
-		if (doMovement == false)
+		if (doMovement == false || Time.timeScale == 0)
 		{
 			return;
 		}
@@ -45,32 +44,77 @@ public class CameraController : MonoBehaviour
 		{
 			buildManager.UnselectTurretToBuild();
 		}
-		if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panMargin)
+		if (fixedPositions.Length >= 6)
 		{
-			transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World);
+			if (Input.GetButtonDown("Camera Top"))
+			{
+				movingToPos = true;
+				targetPos = fixedPositions[0];
+			}
+			if (Input.GetButtonDown("Camera Right"))
+			{
+				movingToPos = true;
+				targetPos = fixedPositions[1];
+			}
+			if (Input.GetButtonDown("Camera Bottom"))
+			{
+				movingToPos = true;
+				targetPos = fixedPositions[2];
+			}
+			if (Input.GetButtonDown("Camera Left"))
+			{
+				movingToPos = true;
+				targetPos = fixedPositions[3];
+			}
+			if (Input.GetButtonDown("Camera Center"))
+			{
+				movingToPos = true;
+				targetPos = fixedPositions[4];
+			}
+			if (Input.GetButtonDown("Camera Fit All"))
+			{
+				movingToPos = true;
+				targetPos = fixedPositions[5];
+			}
 		}
-		if (Input.GetKey("s") || Input.mousePosition.y <= panMargin)
+		if (movingToPos)
 		{
-			transform.Translate(Vector3.back * panSpeed * Time.deltaTime, Space.World);
+			transform.position = Vector3.Lerp(transform.position, targetPos, (GameSettings.PanSpeed / 10f) * Time.deltaTime);
+
+			if (Vector3.Distance(transform.position, targetPos) <= 0.5f)
+			{
+				movingToPos = false;
+			}
 		}
-		if (Input.GetKey("a") || Input.mousePosition.x <= panMargin)
+		else
 		{
-			transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
+			if (Input.GetButton("Move Forward") || Input.mousePosition.y >= Screen.height - panMargin)
+			{
+				transform.Translate(Vector3.forward * GameSettings.PanSpeed * Time.deltaTime, Space.World);
+			}
+			if (Input.GetButton("Move Backward") || Input.mousePosition.y <= panMargin)
+			{
+				transform.Translate(Vector3.back * GameSettings.PanSpeed * Time.deltaTime, Space.World);
+			}
+			if (Input.GetButton("Move Left") || Input.mousePosition.x <= panMargin)
+			{
+				transform.Translate(Vector3.left * GameSettings.PanSpeed * Time.deltaTime, Space.World);
+			}
+			if (Input.GetButton("Move Right") || Input.mousePosition.x >= Screen.width - panMargin)
+			{
+				transform.Translate(Vector3.right * GameSettings.PanSpeed * Time.deltaTime, Space.World);
+			}
+
+			float scroll = Input.GetAxisRaw("Mouse ScrollWheel");
+			Vector3 pos = transform.position;
+
+			pos.y -= scroll * 50000 * Time.deltaTime;
+
+			pos.x = Mathf.Clamp(pos.x, minX, maxX);
+			pos.y = Mathf.Clamp(pos.y, minY, maxY);
+			pos.z = Mathf.Clamp(pos.z, minZ, maxZ);
+
+			transform.position = Vector3.SmoothDamp(transform.position, pos, ref moveVelocity, GameSettings.ScrollSpeed);
 		}
-		if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panMargin)
-		{
-			transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
-		}
-
-		float scroll = Input.GetAxisRaw("Mouse ScrollWheel");
-		Vector3 pos = transform.position;
-
-		pos.y -= scroll * 10000 * Time.deltaTime;
-
-		pos.x = Mathf.Clamp(pos.x, minX, maxX);
-		pos.y = Mathf.Clamp(pos.y, minY, maxY);
-		pos.z = Mathf.Clamp(pos.z, minZ, maxZ);
-
-		transform.position = Vector3.SmoothDamp(transform.position, pos, ref moveVelocity, GameSettings.ScrollSpeed);
 	}
 }

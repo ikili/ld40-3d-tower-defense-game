@@ -57,6 +57,10 @@ public class BuildManager : MonoBehaviour
 
 	public void UnselectTurretToBuild()
 	{
+		if (BuildManager.HoveredNode != null)
+		{
+			BuildManager.HoveredNode.OnMouseExit();
+		}
 		turretToBuild = null;
 	}
 }

@@ -9,6 +9,7 @@ TagManager:
   - Waypoints2
   - Waypoints3
   - Waypoints0
+  - InactiveEnemy
   layers:
   - Default
   - TransparentFX
