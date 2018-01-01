@@ -18,6 +18,7 @@ It is a tower defence style game inspired by [Brackeys](https://www.youtube.com/
 * **A** - move camera to the left
 * **D** - move camera to the right
 * **MouseWheel** - zoom in / zoom out
+* **1**, **2**, **3**, **4**, **5** or **6** - move camera to certain location **\***
 
 #### Other Controls
 * **ESC** or **P** - pause game
